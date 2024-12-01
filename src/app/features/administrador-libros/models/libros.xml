@@ -1,0 +1,44 @@
+<libros>
+  <libro>
+    <id>1</id>
+    <titulo>El Principito</titulo>
+    <autor>Antoine de Saint-Exupéry</autor>
+    <descripcion>Una historia filosófica sobre la vida y la naturaleza humana a través de la perspectiva de un niño.</descripcion>
+    <imagen>/assets/img/libro1.jpg</imagen>
+  </libro>
+  <libro>
+    <id>2</id>
+    <titulo>El zorro en el bosque</titulo>
+    <autor>Salma Dubois</autor>
+    <descripcion>Un libro infantil sobre la vida de un zorro en el bosque y sus aventuras.</descripcion>
+    <imagen>/assets/img/libro2.jpg</imagen>
+  </libro>
+  <libro>
+    <id>3</id>
+    <titulo>El Laberinto de los Susurros</titulo>
+    <autor>Gabriel M. Valero</autor>
+    <descripcion>Secretos enterrados y enigmas en un bosque misterioso, lleno de susurros y misterios.</descripcion>
+    <imagen>/assets/img/libro3.jpg</imagen>
+  </libro>
+  <libro>
+    <id>4</id>
+    <titulo>Aquel bosque de magia</titulo>
+    <autor>Amelia Ocampo</autor>
+    <descripcion>Un relato de fantasía que explora los secretos de un bosque lleno de magia y criaturas misteriosas.</descripcion>
+    <imagen>/assets/img/libro4.jpg</imagen>
+  </libro>
+  <libro>
+    <id>5</id>
+    <titulo>Cruce de Caminos</titulo>
+    <autor>Naira Gamboa</autor>
+    <descripcion>Un viaje de reflexión y decisiones en un lugar donde los caminos se cruzan.</descripcion>
+    <imagen>/assets/img/libro5.jpg</imagen>
+  </libro>
+  <libro>
+    <id>6</id>
+    <titulo>Fuego</titulo>
+    <autor>Bella Ficus</autor>
+    <descripcion>Una historia intensa que ganó el certamen NaNoWriMo, llena de pasión y misterio.</descripcion>
+    <imagen>/assets/img/libro6.jpg</imagen>
+  </libro>
+</libros>

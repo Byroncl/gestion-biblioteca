@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "titulo": "El Principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "descripcion": "Una historia filosófica sobre la vida y la naturaleza humana a través de la perspectiva de un niño.",
+    "imagen": "/assets/img/libro1.jpg"
+  },
+  {
+    "id": 2,
+    "titulo": "El zorro en el bosque",
+    "autor": "Salma Dubois",
+    "descripcion": "Un libro infantil sobre la vida de un zorro en el bosque y sus aventuras.",
+    "imagen": "/assets/img/libro2.jpg"
+  },
+  {
+    "id": 3,
+    "titulo": "El Laberinto de los Susurros",
+    "autor": "Gabriel M. Valero",
+    "descripcion": "Secretos enterrados y enigmas en un bosque misterioso, lleno de susurros y misterios.",
+    "imagen": "/assets/img/libro3.jpg"
+  },
+  {
+    "id": 4,
+    "titulo": "Aquel bosque de magia",
+    "autor": "Amelia Ocampo",
+    "descripcion": "Un relato de fantasía que explora los secretos de un bosque lleno de magia y criaturas misteriosas.",
+    "imagen": "/assets/img/libro4.jpg"
+  },
+  {
+    "id": 5,
+    "titulo": "Cruce de Caminos",
+    "autor": "Naira Gamboa",
+    "descripcion": "Un viaje de reflexión y decisiones en un lugar donde los caminos se cruzan.",
+    "imagen": "/assets/img/libro5.jpg"
+  },
+  {
+    "id": 6,
+    "titulo": "Fuego",
+    "autor": "Bella Ficus",
+    "descripcion": "Una historia intensa que ganó el certamen NaNoWriMo, llena de pasión y misterio.",
+    "imagen": "/assets/img/libro6.jpg"
+  }
+]

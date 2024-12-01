@@ -1,0 +1,24 @@
+<div class="container my-5">
+  <!-- Sección de Recomendaciones -->
+  <section class="recomendaciones my-5">
+    <h2 class="text-center mb-4 display-4 text-primary">Recomendaciones</h2>
+    <p class="text-center text-muted">Explora nuestras recomendaciones personalizadas para ti.</p>
+
+    <!-- Carrusel de Libros -->
+    <ngb-carousel *ngIf="libros.length" class="shadow-lg rounded" [interval]="3000" [wrap]="true" [pauseOnHover]="true">
+      <ng-template ngbSlide *ngFor="let libro of libros">
+        <div class="d-flex justify-content-center">
+          <div class="card shadow-lg border-0" style="width: 18rem;">
+            <img [src]="libro.imagen" class="card-img-top rounded-top" [alt]="libro.titulo" style="height: 280px; object-fit: cover;">
+            <div class="card-body text-center">
+              <h5 class="card-title text-primary fw-bold">{{ libro.titulo }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ libro.autor }}</h6>
+              <p class="card-text">{{ libro.descripcion }}</p>
+              <button class="btn btn-outline-primary mt-2" (click)="agregarAFavoritos(libro)">Agregar a Favoritos</button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </section>
+</div>

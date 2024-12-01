@@ -1,0 +1,158 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">Registro de usuario</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+            <!-- Mostrar mensaje de éxito o error -->
+            <div *ngIf="mensaje" class="alert" [ngClass]="{'alert-success': mensajeTipo === 'success', 'alert-danger': mensajeTipo === 'error'}">
+              {{ mensaje }}
+            </div>
+
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                formControlName="nombre"
+                placeholder="Ingrese su nombre"
+              />
+              <div *ngIf="registroForm.get('nombre')?.touched && registroForm.get('nombre')?.invalid">
+                <small *ngIf="registroForm.get('nombre')?.hasError('required')" class="text-danger">El nombre es requerido.</small>
+                <small *ngIf="registroForm.get('nombre')?.hasError('minlength')" class="text-danger">Debe tener al menos 2 caracteres.</small>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="apellido">Apellido</label>
+              <input
+                type="text"
+                class="form-control"
+                id="apellido"
+                formControlName="apellido"
+                placeholder="Ingrese su apellido"
+              />
+              <div *ngIf="registroForm.get('apellido')?.touched && registroForm.get('apellido')?.invalid">
+                <small *ngIf="registroForm.get('apellido')?.hasError('required')" class="text-danger">El apellido es requerido.</small>
+                <small *ngIf="registroForm.get('apellido')?.hasError('minlength')" class="text-danger">Debe tener al menos 2 caracteres.</small>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="correo">Correo</label>
+              <input
+                type="email"
+                class="form-control"
+                id="correo"
+                formControlName="correo"
+                placeholder="Ingrese su correo"
+              />
+              <div *ngIf="registroForm.get('correo')?.touched && registroForm.get('correo')?.invalid">
+                <small *ngIf="registroForm.get('correo')?.hasError('required')" class="text-danger">El correo es requerido.</small>
+                <small *ngIf="registroForm.get('correo')?.hasError('email')" class="text-danger">Correo no válido.</small>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="contrasena">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                id="contrasena"
+                formControlName="contrasena"
+                placeholder="Ingrese su contraseña"
+              />
+              <div *ngIf="registroForm.get('contrasena')?.touched && registroForm.get('contrasena')?.invalid">
+                <small *ngIf="registroForm.get('contrasena')?.hasError('required')" class="text-danger">La contraseña es requerida.</small>
+                <small *ngIf="registroForm.get('contrasena')?.hasError('minlength')" class="text-danger">Debe tener al menos 6 caracteres.</small>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="confirmarContrasena">Confirmar Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                id="confirmarContrasena"
+                formControlName="confirmarContrasena"
+                placeholder="Ingrese su contraseña de nuevo"
+              />
+              <div *ngIf="registroForm.get('confirmarContrasena')?.touched && registroForm.hasError('mismatch')">
+                <small class="text-danger">Las contraseñas no coinciden.</small>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="facultad">Facultad</label>
+              <input
+                type="text"
+                class="form-control"
+                id="facultad"
+                formControlName="facultad"
+                placeholder="Ingrese su facultad"
+              />
+              <div *ngIf="registroForm.get('facultad')?.touched && registroForm.get('facultad')?.invalid">
+                <small *ngIf="registroForm.get('facultad')?.hasError('required')" class="text-danger">La facultad es requerida.</small>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="carrera">Carrera</label>
+              <input
+                type="text"
+                class="form-control"
+                id="carrera"
+                formControlName="carrera"
+                placeholder="Ingrese su carrera"
+              />
+              <div *ngIf="registroForm.get('carrera')?.touched && registroForm.get('carrera')?.invalid">
+                <small *ngIf="registroForm.get('carrera')?.hasError('required')" class="text-danger">La carrera es requerida.</small>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="semestre">Semestre</label>
+              <input
+                type="number"
+                class="form-control"
+                id="semestre"
+                formControlName="semestre"
+                placeholder="Ingrese su semestre"
+              />
+              <div *ngIf="registroForm.get('semestre')?.touched && registroForm.get('semestre')?.invalid">
+                <small *ngIf="registroForm.get('semestre')?.hasError('required')" class="text-danger">El semestre es requerido.</small>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="telefono">Teléfono</label>
+              <input
+                type="text"
+                class="form-control"
+                id="telefono"
+                formControlName="telefono"
+                placeholder="Ingrese su teléfono"
+              />
+              <div *ngIf="registroForm.get('telefono')?.touched && registroForm.get('telefono')?.invalid">
+                <small *ngIf="registroForm.get('telefono')?.hasError('required')" class="text-danger">El teléfono es requerido.</small>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+              <button type="submit" class="btn btn-primary mx-2" [disabled]="registroForm.invalid">
+                Registrarse
+              </button>
+              <button type="button" class="btn btn-secondary mx-2" (click)="navigateToLogin()">
+                Iniciar sesión
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

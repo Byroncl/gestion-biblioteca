@@ -1,0 +1,109 @@
+<div class="container my-5">
+  <!-- Perfil del Usuario -->
+  <h2 class="text-center mb-4 display-4 fw-bold text-primary">Perfil del Usuario</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <ng-container *ngIf="!editMode; else editForm">
+            <h3 class="card-title text-center fw-bold">{{ usuario.nombre }} {{ usuario.apellido }}</h3>
+            <p class="text-muted text-center">{{ usuario.correo }}</p>
+            <hr>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Facultad:</strong> {{ usuario.facultad }}</li>
+              <li class="list-group-item"><strong>Carrera:</strong> {{ usuario.carrera }}</li>
+              <li class="list-group-item"><strong>Semestre:</strong> {{ usuario.semestre }}</li>
+              <li class="list-group-item"><strong>Teléfono:</strong> {{ usuario.telefono }}</li>
+              <li class="list-group-item"><strong>Foto:</strong> <img [src]="usuario.foto" alt="Foto del Usuario" class="img-thumbnail" style="width: 100px; height: auto;"></li>
+            </ul>
+            <div class="d-grid mt-4">
+              <button class="btn btn-primary" (click)="toggleEditMode()">Editar Perfil</button>
+            </div>
+          </ng-container>
+
+          <!-- Formulario de edición -->
+          <ng-template #editForm>
+            <form (ngSubmit)="saveChanges()">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" id="nombre" [(ngModel)]="usuario.nombre" name="nombre" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" id="apellido" [(ngModel)]="usuario.apellido" name="apellido" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="correo" class="form-label">Correo</label>
+                <input type="email" id="correo" [(ngModel)]="usuario.correo" name="correo" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="facultad" class="form-label">Facultad</label>
+                <input type="text" id="facultad" [(ngModel)]="usuario.facultad" name="facultad" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="carrera" class="form-label">Carrera</label>
+                <input type="text" id="carrera" [(ngModel)]="usuario.carrera" name="carrera" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="semestre" class="form-label">Semestre</label>
+                <input type="number" id="semestre" [(ngModel)]="usuario.semestre" name="semestre" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="text" id="telefono" [(ngModel)]="usuario.telefono" name="telefono" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="foto" class="form-label">Foto</label>
+                <input type="file" id="foto" (change)="onFileChange($event)" class="form-control">
+              </div>
+              <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                <button type="button" class="btn btn-secondary" (click)="toggleEditMode()">Cancelar</button>
+              </div>
+            </form>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Libros Guardados -->
+  <section class="guardados my-5">
+    <h2 class="text-center mb-4 display-4 text-primary">Libros Guardados</h2>
+    <ngb-carousel *ngIf="libros.length">
+      <ng-template ngbSlide *ngFor="let libro of libros">
+        <div class="d-flex justify-content-center">
+          <div class="card shadow" style="width: 18rem;">
+            <img [src]="libro.imagen" class="card-img-top" [alt]="libro.titulo">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{ libro.titulo }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ libro.autor }}</h6>
+              <p class="card-text">{{ libro.descripcion }}</p>
+              <button class="btn btn-outline-primary mt-2" (click)="agregarAFavoritos(libro)">Agregar a Favoritos</button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </section>
+
+  <!-- Recomendaciones -->
+  <section class="recomendaciones my-5">
+    <h2 class="text-center mb-4 display-4 text-primary">Recomendaciones</h2>
+    <ngb-carousel *ngIf="libros.length">
+      <ng-template ngbSlide *ngFor="let libro of libros">
+        <div class="d-flex justify-content-center">
+          <div class="card shadow" style="width: 18rem;">
+            <img [src]="libro.imagen" class="card-img-top" [alt]="libro.titulo">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{ libro.titulo }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ libro.autor }}</h6>
+              <p class="card-text">{{ libro.descripcion }}</p>
+              <button class="btn btn-outline-primary mt-2" (click)="agregarAFavoritos(libro)">Agregar a Favoritos</button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </section>
+</div>

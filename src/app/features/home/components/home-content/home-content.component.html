@@ -1,0 +1,51 @@
+<div class="container my-5">
+  <!-- Nuevas Publicaciones -->
+  <section class="nuevas-publicaciones text-center mb-4">
+    <h2 class="display-4 text-primary">Nuevas Publicaciones</h2>
+    <p class="text-muted">Descubre nuestras últimas adquisiciones de libros.</p>
+  </section>
+
+  <!-- Carrusel de Libros usando ngb-carousel -->
+  <ngb-carousel *ngIf="libros.length">
+    <ng-template ngbSlide *ngFor="let libro of libros">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card shadow-sm">
+            <img [src]="libro.imagen" class="card-img-top" [alt]="libro.titulo">
+            <div class="card-body text-center">
+              <h5 class="card-title text-primary fw-bold">{{ libro.titulo }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Autor: {{ libro.autor }}</h6>
+              <p class="card-text">{{ libro.descripcion }}</p>
+              <button class="btn btn-outline-primary">Más Información</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
+  <!-- Documentos Más Leídos -->
+  <section class="documentos-mas-leidos text-center my-5">
+    <h2 class="display-4 text-primary">Documentos Más Leídos</h2>
+    <p class="text-muted">Explora los libros favoritos de nuestros usuarios.</p>
+  </section>
+
+  <!-- Carrusel de Documentos Más Leídos usando ngb-carousel -->
+  <ngb-carousel *ngIf="libros.length">
+    <ng-template ngbSlide *ngFor="let libro of libros">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card shadow-sm">
+            <img [src]="libro.imagen" class="card-img-top" [alt]="libro.titulo">
+            <div class="card-body text-center">
+              <h5 class="card-title text-success fw-bold">{{ libro.titulo }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Autor: {{ libro.autor }}</h6>
+              <p class="card-text">{{ libro.descripcion }}</p>
+              <button class="btn btn-outline-success">Leer Ahora</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>

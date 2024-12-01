@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "nombre": "Silla",
+    "descripcion": "Silla de oficina",
+    "cantidad": 10,
+    "estado": "bueno",
+    "fecha_adquisicion": "2021-01-01",
+    "facultad": "Ingenieria en Sistemas",
+    "responsable": "Juan Perez"
+  },
+  {
+    "id": 2,
+    "nombre": "Mesa",
+    "descripcion": "Mesa de madera",
+    "cantidad": 5,
+    "estado": "regular",
+    "fecha_adquisicion": "2021-01-01",
+    "facultad": "Ingenieria en Sistemas",
+    "responsable": "Juan Perez"
+  },
+  {
+    "id": 3,
+    "nombre": "Proyector",
+    "descripcion": "Proyector de 3000 lumenes",
+    "cantidad": 1,
+    "estado": "bueno",
+    "fecha_adquisicion": "2021-01-01",
+    "facultad": "Ingenieria en Sistemas",
+    "responsable": "Juan Perez"
+  },
+  {
+    "id": 4,
+    "nombre": "Silla",
+    "descripcion": "Silla de oficina",
+    "cantidad": 10,
+    "estado": "bueno",
+    "fecha_adquisicion": "2021-01-01",
+    "facultad": "Ingenieria en Sistemas",
+    "responsable": "Juan Perez"
+  },
+  {
+    "id": 5,
+    "nombre": "Mesa",
+    "descripcion": "Mesa de madera",
+    "cantidad": 5,
+    "estado": "regular",
+    "fecha_adquisicion": "2021-01-01",
+    "facultad": "Ingenieria en Sistemas",
+    "responsable": "Juan Perez"
+  },
+  {
+    "id": 6,
+    "nombre": "Proyector",
+    "descripcion": "Proyector de 3000 lumenes",
+    "cantidad": 1,
+    "estado": "bueno",
+    "fecha_adquisicion": "2021-01-01",
+    "facultad": "Ingenieria en Sistemas",
+    "responsable": "Juan Perez"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "nombre": "Sekai",
+    "apellido": "Natsumi",
+    "email": "sekai@gmail.com",
+    "facultad": "Facci",
+    "carrera": "Ingenieria en tecnologia de la información",
+    "semestre": 5,
+    "telefono": "1234567890"
+  },
+  {
+    "id": 2,
+    "nombre": "jose ",
+    "apellido": "lucas",
+    "email": "jl@gmail.com",
+    "facultad": "Facci",
+    "carrera": "Ingenieria en sistemas",
+    "semestre": 3,
+    "telefono": "0987654321"
+  },
+  {
+    "id": 3,
+    "nombre": "camila",
+    "apellido": "zambrano",
+    "email": "cami@gmail.com",
+    "facultad": "Facci",
+    "carrera": "Ingenieria en software",
+    "semestre": 2,
+    "telefono": "1122334455"
+  }
+]

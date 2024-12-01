@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "nombre": "Sekai",
+    "apellido": "Natsumi",
+    "email": "sekai@gmail.com",
+    "facultad": "Facci",
+    "carrera": "Ingenieria en tecnologia de la información",
+    "semestre": 5,
+    "telefono": "1234567890",
+    "foto": "/assets/icons/PruebaUser.png"
+  }
+]

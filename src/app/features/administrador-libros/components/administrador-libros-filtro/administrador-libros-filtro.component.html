@@ -1,0 +1,20 @@
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Filtros
+      </button>
+    </h2>
+    <div id="filterCollapse" class="accordion-collapse collapse" aria-labelledby="filterHeading" data-bs-parent="#filterAccordion">
+      <div class="accordion-body">
+        <input type="text" [(ngModel)]="criterio.titulo" placeholder="Filtrar por Título" class="form-control mb-2" />
+        <input type="text" [(ngModel)]="criterio.autor" placeholder="Filtrar por Autor" class="form-control mb-2" />
+        <input type="text" [(ngModel)]="criterio.descripcion" placeholder="Filtrar por Descripción" class="form-control mb-2" />
+
+        <div class="d-grid">
+          <button (click)="emitirFiltro()" class="btn btn-primary mt-3">Aplicar Filtro</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

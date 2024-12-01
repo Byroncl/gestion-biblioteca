@@ -1,0 +1,28 @@
+<div class="container my-5">
+  <!-- Filtro de Búsqueda -->
+  <div class="row mb-4">
+    <div class="col-md-6 offset-md-3">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Buscar por título o autor" [(ngModel)]="searchText">
+        <button class="btn btn-primary" (click)="buscar()">Buscar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Catálogo de Libros -->
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let libro of filteredLibros">
+      <div class="card h-100 shadow-sm">
+        <img [src]="libro.imagen" class="card-img-top" [alt]="libro.titulo">
+        <div class="card-body">
+          <h5 class="card-title text-primary">{{ libro.titulo }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Autor: {{ libro.autor }}</h6>
+          <p class="card-text">{{ libro.descripcion }}</p>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-outline-primary" (click)="agregarAFavoritos(libro)">Agregar a Favoritos</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4 text-primary">Lista de Libros</h2>
+
+  <!-- Filtros -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <input type="text" [(ngModel)]="criterio.titulo" placeholder="Filtrar por Título" class="form-control mb-2" />
+    </div>
+    <div class="col-md-4">
+      <input type="text" [(ngModel)]="criterio.autor" placeholder="Filtrar por Autor" class="form-control mb-2" />
+    </div>
+    <div class="col-md-4">
+      <input type="text" [(ngModel)]="criterio.descripcion" placeholder="Filtrar por Descripción" class="form-control mb-2" />
+    </div>
+    <div class="col-md-12 text-end">
+      <button (click)="aplicarFiltro()" class="btn btn-primary mt-3">Aplicar Filtro</button>
+    </div>
+  </div>
+
+  <div class="text-end mb-3">
+    <button class="btn btn-primary" (click)="abrirModal(nuevoLibroModal)">Añadir Libro</button>
+  </div>
+
+  <table class="table table-hover table-bordered">
+    <thead class="table-primary">
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Descripción</th>
+        <th>Imagen</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let libro of librosFiltrados">
+        <td>{{ libro.id }}</td>
+        <td>{{ libro.titulo }}</td>
+        <td>{{ libro.autor }}</td>
+        <td>{{ libro.descripcion }}</td>
+        <td><img [src]="libro.imagen" alt="{{ libro.titulo }}" class="img-thumbnail" style="width: 50px; height: auto;"></td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="editarLibro(libro, editarLibroModal)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminarLibro(libro.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal para Añadir Libro -->
+  <ng-template #nuevoLibroModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">Añadir Libro</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="nuevoLibroForm" (ngSubmit)="agregarLibro()">
+        <div class="mb-3">
+          <label for="titulo" class="form-label">Título</label>
+          <input type="text" id="titulo" formControlName="titulo" class="form-control" [ngClass]="{'is-invalid': nuevoLibroForm.get('titulo')?.invalid && nuevoLibroForm.get('titulo')?.touched}">
+          <div *ngIf="nuevoLibroForm.get('titulo')?.invalid && nuevoLibroForm.get('titulo')?.touched" class="invalid-feedback">
+            <div *ngIf="nuevoLibroForm.get('titulo')?.errors?.['required']">El título es requerido.</div>
+            <div *ngIf="nuevoLibroForm.get('titulo')?.errors?.['minlength']">El título debe tener al menos 2 caracteres.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="autor" class="form-label">Autor</label>
+          <input type="text" id="autor" formControlName="autor" class="form-control" [ngClass]="{'is-invalid': nuevoLibroForm.get('autor')?.invalid && nuevoLibroForm.get('autor')?.touched}">
+          <div *ngIf="nuevoLibroForm.get('autor')?.invalid && nuevoLibroForm.get('autor')?.touched" class="invalid-feedback">
+            <div *ngIf="nuevoLibroForm.get('autor')?.errors?.['required']">El autor es requerido.</div>
+            <div *ngIf="nuevoLibroForm.get('autor')?.errors?.['minlength']">El autor debe tener al menos 2 caracteres.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <textarea id="descripcion" formControlName="descripcion" class="form-control" [ngClass]="{'is-invalid': nuevoLibroForm.get('descripcion')?.invalid && nuevoLibroForm.get('descripcion')?.touched}"></textarea>
+          <div *ngIf="nuevoLibroForm.get('descripcion')?.invalid && nuevoLibroForm.get('descripcion')?.touched" class="invalid-feedback">
+            <div *ngIf="nuevoLibroForm.get('descripcion')?.errors?.['required']">La descripción es requerida.</div>
+            <div *ngIf="nuevoLibroForm.get('descripcion')?.errors?.['minlength']">La descripción debe tener al menos 10 caracteres.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="imagen" class="form-label">Imagen</label>
+          <input type="file" id="imagen" (change)="onFileChange($event, nuevoLibroForm)" class="form-control" [ngClass]="{'is-invalid': nuevoLibroForm.get('imagen')?.invalid && nuevoLibroForm.get('imagen')?.touched}">
+          <div *ngIf="nuevoLibroForm.get('imagen')?.invalid && nuevoLibroForm.get('imagen')?.touched" class="invalid-feedback">
+            <div *ngIf="nuevoLibroForm.get('imagen')?.errors?.['required']">La imagen es requerida.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <!-- Modal para Editar Libro -->
+  <ng-template #editarLibroModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">Editar Libro</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body" *ngIf="libroEditandoForm">
+      <form [formGroup]="libroEditandoForm" (ngSubmit)="guardarEdicion()">
+        <div class="mb-3">
+          <label for="editTitulo" class="form-label">Título</label>
+          <input type="text" id="editTitulo" formControlName="titulo" class="form-control" [ngClass]="{'is-invalid': libroEditandoForm.get('titulo')?.invalid && libroEditandoForm.get('titulo')?.touched}">
+          <div *ngIf="libroEditandoForm.get('titulo')?.invalid && libroEditandoForm.get('titulo')?.touched" class="invalid-feedback">
+            <div *ngIf="libroEditandoForm.get('titulo')?.errors?.['required']">El título es requerido.</div>
+            <div *ngIf="libroEditandoForm.get('titulo')?.errors?.['minlength']">El título debe tener al menos 2 caracteres.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="editAutor" class="form-label">Autor</label>
+          <input type="text" id="editAutor" formControlName="autor" class="form-control" [ngClass]="{'is-invalid': libroEditandoForm.get('autor')?.invalid && libroEditandoForm.get('autor')?.touched}">
+          <div *ngIf="libroEditandoForm.get('autor')?.invalid && libroEditandoForm.get('autor')?.touched" class="invalid-feedback">
+            <div *ngIf="libroEditandoForm.get('autor')?.errors?.['required']">El autor es requerido.</div>
+            <div *ngIf="libroEditandoForm.get('autor')?.errors?.['minlength']">El autor debe tener al menos 2 caracteres.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="editDescripcion" class="form-label">Descripción</label>
+          <textarea id="editDescripcion" formControlName="descripcion" class="form-control" [ngClass]="{'is-invalid': libroEditandoForm.get('descripcion')?.invalid && libroEditandoForm.get('descripcion')?.touched}"></textarea>
+          <div *ngIf="libroEditandoForm.get('descripcion')?.invalid && libroEditandoForm.get('descripcion')?.touched" class="invalid-feedback">
+            <div *ngIf="libroEditandoForm.get('descripcion')?.errors?.['required']">La descripción es requerida.</div>
+            <div *ngIf="libroEditandoForm.get('descripcion')?.errors?.['minlength']">La descripción debe tener al menos 10 caracteres.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="editImagen" class="form-label">Imagen</label>
+          <input type="file" id="editImagen" (change)="onFileChange($event, libroEditandoForm)" class="form-control" [ngClass]="{'is-invalid': libroEditandoForm.get('imagen')?.invalid && libroEditandoForm.get('imagen')?.touched}">
+          <div *ngIf="libroEditandoForm.get('imagen')?.invalid && libroEditandoForm.get('imagen')?.touched" class="invalid-feedback">
+            <div *ngIf="libroEditandoForm.get('imagen')?.errors?.['required']">La imagen es requerida.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>

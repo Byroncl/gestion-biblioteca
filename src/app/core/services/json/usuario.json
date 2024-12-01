@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "facultad": "Ingenieria",
+    "rol": "administrador",
+    "correo": "juan.perez@universidad.edu",
+    "contrasena": "password123"
+  },
+  {
+    "id": 2,
+    "nombre": "Maria",
+    "apellido": "Gomez",
+    "facultad": "Ciencias",
+    "rol": "usuario",
+    "correo": "maria.gomez@universidad.edu",
+    "contrasena": "password456"
+  },
+  {
+    "id": 3,
+    "nombre": "Carlos",
+    "apellido": "Lopez",
+    "facultad": "Artes",
+    "rol": "usuario",
+    "correo": "carlos.lopez@universidad.edu",
+    "contrasena": "password789"
+  }
+]

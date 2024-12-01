@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">Login</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onLogin()">
+            <!-- Mostrar mensaje de éxito o error -->
+            <div *ngIf="mensaje" class="alert" [ngClass]="{'alert-success': mensajeTipo === 'success', 'alert-danger': mensajeTipo === 'error'}">
+              {{ mensaje }}
+            </div>
+
+            <div class="form-group">
+              <label for="correo">Correo</label>
+              <input
+                type="email"
+                class="form-control"
+                id="correo"
+                [(ngModel)]="correo"
+                name="correo"
+                placeholder="Ingrese su correo"
+                required
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="contrasena">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                id="contrasena"
+                [(ngModel)]="contrasena"
+                name="contrasena"
+                placeholder="Ingrese su contraseña"
+                required
+              />
+            </div>
+
+            <!-- Botones centrados y con espacio entre ellos -->
+            <div class="d-flex justify-content-center mt-4">
+              <button type="submit" class="btn btn-primary mx-2">
+                Ingresar
+              </button>
+              <<button type="button" class="btn btn-secondary mx-2" (click)="navigateToRegistro()">
+                Registrarse
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

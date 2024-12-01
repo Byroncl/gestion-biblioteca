@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "busqueda": "El Principito",
+    "fecha": "2024-01-01"
+  },
+  {
+    "id": 2,
+    "busqueda": "El zorro en el bosque",
+    "fecha": "2024-01-02"
+  },
+  {
+    "id": 3,
+    "busqueda": "El Laberinto de los Susurros",
+    "fecha": "2024-01-03"
+  },
+  {
+    "id": 4,
+    "busqueda": "Aquel bosque de magia",
+    "fecha": "2024-01-04"
+  },
+  {
+    "id": 5,
+    "busqueda": "Cruce de Caminos",
+    "fecha": "2024-01-05"
+  },
+  {
+    "id": 6,
+    "busqueda": "Fuego",
+    "fecha": "2024-01-06"
+  }
+]

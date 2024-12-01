@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg" id="navbar">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand" href="#">
+      <img src="/assets/img/logo.png" alt="Logo de la Biblioteca" class="logo-img">
+    </a>
+
+    <!-- Menú desplegable para dispositivos pequeños -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Opciones del menú y los íconos a la derecha -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item">
+          <img src="/assets/icons/Menu.png" alt="Menú" class="icon" (click)="toggleMenu()">
+        </li>
+        <li class="nav-item">
+          <img src="/assets/icons/Notificaciones.png" alt="Notificaciones" class="icon" (click)="toggleNotifications()">
+        </li>
+        <li class="nav-item">
+          <img src="/assets/icons/Busqueda.png" alt="Buscar" class="icon" (click)="toggleSearch()">
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Menú Plegable -->
+<div class="menu-plegable" [ngStyle]="{ transform: menuVisible ? 'translateX(0%)' : 'translateX(-100%)' }">
+  <div class="menu-header">
+    <img *ngIf="usuario" [src]="usuario.foto" alt="Foto del Usuario" class="user-photo">
+    <p *ngIf="usuario">{{ usuario.nombre }} {{ usuario.apellido }}</p>
+  </div>
+  <ul class="menu-options">
+    <li (click)="navigateTo('perfil')">Perfil</li>
+    <li (click)="navigateTo('perfil-historial')">Historial de Búsqueda</li>
+    <li (click)="navigateTo('perfil-guardados')">Libros Guardados</li>
+    <li (click)="navigateTo('perfil-recomendaciones')">Recomendaciones</li>
+    <li (click)="navigateTo('perfil-catalogo')">Catálogo</li>
+  </ul>
+</div>
+
+<!-- Sección de Notificaciones -->
+<div class="notifications" [ngStyle]="{ transform: notificationsVisible ? 'translateX(0%)' : 'translateX(100%)' }">
+  <h3>Notificaciones</h3>
+  <ul>
+    <li *ngFor="let notificacion of notificaciones">
+      <h5>{{ notificacion.titulo }}</h5>
+      <p>{{ notificacion.descripcion }}</p>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,131 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4 text-primary">Gestión de Usuarios</h2>
+
+  <app-administrador-usuario-filtro (filtroAplicado)="aplicarFiltro($event)"></app-administrador-usuario-filtro>
+
+  <div class="text-end mb-3">
+    <button class="btn btn-primary" (click)="abrirModal(nuevoUsuarioModal)">Añadir Usuario</button>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuariosFiltrados; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ usuario.nombre }}</td>
+        <td>{{ usuario.correo }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="editarUsuario(usuario, editarUsuarioModal)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminarUsuario(usuario.correo)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal para Añadir Usuario -->
+  <ng-template #nuevoUsuarioModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">Añadir Usuario</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="nuevoUsuarioForm">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" id="nombre" formControlName="nombre" class="form-control" [ngClass]="{'is-invalid': nuevoUsuarioForm.get('nombre')?.invalid && nuevoUsuarioForm.get('nombre')?.touched}">
+          <div *ngIf="nuevoUsuarioForm.get('nombre')?.invalid && nuevoUsuarioForm.get('nombre')?.touched" class="invalid-feedback">
+            <div *ngIf="nuevoUsuarioForm.get('nombre')?.errors?.['required']">El nombre es requerido.</div>
+            <div *ngIf="nuevoUsuarioForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 2 caracteres.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo</label>
+          <input type="email" id="correo" formControlName="correo" class="form-control" [ngClass]="{'is-invalid': nuevoUsuarioForm.get('correo')?.invalid && nuevoUsuarioForm.get('correo')?.touched}">
+          <div *ngIf="nuevoUsuarioForm.get('correo')?.invalid && nuevoUsuarioForm.get('correo')?.touched" class="invalid-feedback">
+            <div *ngIf="nuevoUsuarioForm.get('correo')?.errors?.['required']">El correo es requerido.</div>
+            <div *ngIf="nuevoUsuarioForm.get('correo')?.errors?.['email']">El correo no es válido.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="contrasena" class="form-label">Contraseña</label>
+          <input type="password" id="contrasena" formControlName="contrasena" class="form-control" [ngClass]="{'is-invalid': nuevoUsuarioForm.get('contrasena')?.invalid && nuevoUsuarioForm.get('contrasena')?.touched}">
+          <div *ngIf="nuevoUsuarioForm.get('contrasena')?.invalid && nuevoUsuarioForm.get('contrasena')?.touched" class="invalid-feedback">
+            <div *ngIf="nuevoUsuarioForm.get('contrasena')?.errors?.['required']">La contraseña es requerida.</div>
+            <div *ngIf="nuevoUsuarioForm.get('contrasena')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="rol" class="form-label">Rol</label>
+          <select id="rol" formControlName="rol" class="form-control" [ngClass]="{'is-invalid': nuevoUsuarioForm.get('rol')?.invalid && nuevoUsuarioForm.get('rol')?.touched}">
+            <option value="usuario">Usuario</option>
+            <option value="administrador">Administrador</option>
+          </select>
+          <div *ngIf="nuevoUsuarioForm.get('rol')?.invalid && nuevoUsuarioForm.get('rol')?.touched" class="invalid-feedback">
+            <div *ngIf="nuevoUsuarioForm.get('rol')?.errors?.['required']">El rol es requerido.</div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Cancelar</button>
+      <button type="button" class="btn btn-primary" (click)="agregarUsuario()">Guardar</button>
+    </div>
+  </ng-template>
+
+  <!-- Modal para Editar Usuario -->
+  <ng-template #editarUsuarioModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">Editar Usuario</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body" *ngIf="usuarioEditandoForm">
+      <form [formGroup]="usuarioEditandoForm">
+        <div class="mb-3">
+          <label for="editNombre" class="form-label">Nombre</label>
+          <input type="text" id="editNombre" formControlName="nombre" class="form-control" [ngClass]="{'is-invalid': usuarioEditandoForm.get('nombre')?.invalid && usuarioEditandoForm.get('nombre')?.touched}">
+          <div *ngIf="usuarioEditandoForm.get('nombre')?.invalid && usuarioEditandoForm.get('nombre')?.touched" class="invalid-feedback">
+            <div *ngIf="usuarioEditandoForm.get('nombre')?.errors?.['required']">El nombre es requerido.</div>
+            <div *ngIf="usuarioEditandoForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 2 caracteres.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="editCorreo" class="form-label">Correo</label>
+          <input type="email" id="editCorreo" formControlName="correo" class="form-control" [ngClass]="{'is-invalid': usuarioEditandoForm.get('correo')?.invalid && usuarioEditandoForm.get('correo')?.touched}">
+          <div *ngIf="usuarioEditandoForm.get('correo')?.invalid && usuarioEditandoForm.get('correo')?.touched" class="invalid-feedback">
+            <div *ngIf="usuarioEditandoForm.get('correo')?.errors?.['required']">El correo es requerido.</div>
+            <div *ngIf="usuarioEditandoForm.get('correo')?.errors?.['email']">El correo no es válido.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="editContrasena" class="form-label">Contraseña</label>
+          <input type="password" id="editContrasena" formControlName="contrasena" class="form-control" [ngClass]="{'is-invalid': usuarioEditandoForm.get('contrasena')?.invalid && usuarioEditandoForm.get('contrasena')?.touched}">
+          <div *ngIf="usuarioEditandoForm.get('contrasena')?.invalid && usuarioEditandoForm.get('contrasena')?.touched" class="invalid-feedback">
+            <div *ngIf="usuarioEditandoForm.get('contrasena')?.errors?.['required']">La contraseña es requerida.</div>
+            <div *ngIf="usuarioEditandoForm.get('contrasena')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="editRol" class="form-label">Rol</label>
+          <select id="editRol" formControlName="rol" class="form-control" [ngClass]="{'is-invalid': usuarioEditandoForm.get('rol')?.invalid && usuarioEditandoForm.get('rol')?.touched}">
+            <option value="usuario">Usuario</option>
+            <option value="administrador">Administrador</option>
+          </select>
+          <div *ngIf="usuarioEditandoForm.get('rol')?.invalid && usuarioEditandoForm.get('rol')?.touched" class="invalid-feedback">
+            <div *ngIf="usuarioEditandoForm.get('rol')?.errors?.['required']">El rol es requerido.</div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+      <button type="button" class="btn btn-primary" (click)="guardarEdicion()">Guardar Cambios</button>
+    </div>
+  </ng-template>
+</div>

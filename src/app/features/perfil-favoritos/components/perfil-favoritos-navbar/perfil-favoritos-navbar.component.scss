@@ -1,0 +1,134 @@
+.logo {
+  background-image: url("/assets/img/logo.png");
+  background-size: cover;
+  background-position: center;
+  padding: 20px 50px;
+}
+
+#navbar {
+  background-color: #d41c1c !important;
+}
+
+.nav-link{
+  border-radius: 50px;
+}
+.nav-link:hover {
+  background-color: rgb(0, 148, 12);
+}
+
+#navbar {
+  background-color: #d41c1c;
+  padding: 0.5rem 1rem;
+
+  .logo-img {
+    height: 50px; /* Ajusta el tamaño del logo */
+  }
+
+  .icon {
+    height: 30px; /* Ajusta el tamaño de los íconos */
+    margin-left: 20px; /* Espaciado entre íconos */
+    cursor: pointer;
+  }
+
+  /* Estilos para dispositivos móviles */
+  .navbar-toggler {
+    border: none;
+    outline: none;
+  }
+}
+
+#navbar {
+  background-color: #d41c1c !important;
+}
+
+.logo-img {
+  height: 50px;
+}
+
+.icon {
+  height: 40px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.menu-plegable {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+.menu-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #222;
+  border-bottom: 1px solid #555;
+}
+
+.user-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.menu-options {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  background-color: #333;
+}
+
+.menu-options li {
+  padding: 15px 20px;
+  cursor: pointer;
+}
+
+.menu-options li:hover {
+  background-color: #555;
+}
+
+.notifications {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+.notifications h3 {
+  margin: 0;
+  padding: 10px;
+  background-color: #222;
+  color: white;
+}
+
+.notifications ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notifications li {
+  padding: 15px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.notifications li:hover {
+  background-color: #555;
+}
